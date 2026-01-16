@@ -1,44 +1,65 @@
 import { Link, Outlet, createRootRoute } from '@tanstack/react-router';
 
-import { Route as aboutRoute } from './index';
-import { Route as productsRoute } from './products';
-
 import logo from '/assets/images/logo.svg';
+import NotFound from './-notFoundPage';
 
-function RootComponent() {
+interface LinkProps {
+  id: number;
+  name: string;
+  to: string;
+  activeOptions?: {
+    exact?: boolean;
+  };
+}
+
+const links: LinkProps[] = [
+  {
+    id: 1,
+    name: 'About us',
+    to: '/',
+    activeOptions: { exact: true },
+  },
+  {
+    id: 2,
+    name: 'Products',
+    to: '/products',
+  },
+];
+
+const RootComponent = () => {
   return (
     <>
-      <header className="flex h-22 items-center justify-between bg-coral p-4">
+      <header className="flex h-22 items-center justify-between bg-coral p-4 lg:p-8">
         <div>
           <img src={logo} alt="Market logo" />
         </div>
-        <div className="flex gap-2 p-2">
-          <Link
-            to={aboutRoute.to}
-            activeProps={{
-              className: 'font-bold',
-            }}
-            activeOptions={{ exact: true }}
-          >
-            About us
-          </Link>
-          <Link
-            to={productsRoute.to}
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            Products
-          </Link>
-        </div>
+
+        <ul className="flex gap-4 p-2">
+          {links.map((link) => (
+            <li className="text-white" key={link.id}>
+              <Link
+                to={link.to}
+                activeProps={{
+                  className: 'p-2 rounded-md border-b-2 border-grey-middle',
+                }}
+                inactiveProps={{
+                  className: 'p-2 rounded-md border-b-2 border-transparent hover:bg-coral-light',
+                }}
+                activeOptions={link.activeOptions ? link.activeOptions : {}}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </header>
 
       <Outlet />
     </>
   );
-}
+};
 
 export const Route = createRootRoute({
   component: RootComponent,
-  notFoundComponent: () => <h1>404 Not Found</h1>,
+  notFoundComponent: NotFound,
 });
