@@ -1,7 +1,12 @@
-import { Link, Outlet, createRootRoute } from '@tanstack/react-router';
+import { Link, Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import type { QueryClient } from '@tanstack/react-query';
 
 import logo from '/assets/images/logo.svg';
 import NotFound from './-notFoundPage';
+
+interface CustomRouterContext {
+  queryClient: QueryClient;
+}
 
 interface LinkProps {
   id: number;
@@ -59,7 +64,7 @@ const RootComponent = () => {
   );
 };
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<CustomRouterContext>()({
   component: RootComponent,
   notFoundComponent: NotFound,
 });
