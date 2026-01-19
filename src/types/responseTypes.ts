@@ -21,7 +21,6 @@ export interface SingleProduct {
   title: string;
   description: string;
   dimensions: DimensionsType;
-  weight: number;
   thumbnail: string;
   images: string[];
   price: number;

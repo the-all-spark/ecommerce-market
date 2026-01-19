@@ -1,20 +1,11 @@
 import { Link } from '@tanstack/react-router';
 import type { AllProducts } from '../types/responseTypes';
 
+import { getCircleColor } from '../utils/getCircleColor';
+
 interface ProductPreviewCardProps {
   item: AllProducts;
 }
-
-const getCircleColor = (availabilityStatus: string) => {
-  switch (availabilityStatus) {
-    case 'In Stock':
-      return 'bg-green';
-    case 'Low Stock':
-      return 'bg-yellow';
-    case 'Out of Stock':
-      return 'bg-red';
-  }
-};
 
 const ProductPreviewCard = ({ item }: ProductPreviewCardProps) => {
   let categoryString = item.category[0].toUpperCase() + item.category.slice(1);

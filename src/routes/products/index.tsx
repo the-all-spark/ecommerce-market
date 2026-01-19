@@ -9,7 +9,7 @@ import ProductPreviewCard from '../../components/ProductPreviewCard';
 // List of products' preview cards
 // TODO: add pagination
 
-const Products = () => {
+function Products() {
   const { data, status } = useSuspenseQuery(allProductsQueryOptions);
 
   let content: React.ReactNode;
@@ -19,8 +19,13 @@ const Products = () => {
     content = data.products.map((item: AllProducts) => <ProductPreviewCard key={item.id} item={item} />);
   }
 
-  return <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6">{content}</div>;
-};
+  return (
+    <>
+      <h1 className="pt-6 text-center font-heading text-h1/8">Get acquainted with all products!</h1>
+      <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6">{content}</div>
+    </>
+  );
+}
 
 export const Route = createFileRoute('/products/')({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(allProductsQueryOptions),
