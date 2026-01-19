@@ -9,7 +9,7 @@ interface ApiResponse {
 
 export const getAllProducts = async (): Promise<ApiResponse> => {
   // const res = await fetch(`https://dummyjson.com/products?limit=0`); //! limit=0 - to get all products
-  const res = await fetch(`https://dummyjson.com/products?limit=20`);
+  const res = await fetch(`https://dummyjson.com/products?limit=30`);
   return await res.json();
 };
 

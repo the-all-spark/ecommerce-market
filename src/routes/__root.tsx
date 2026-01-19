@@ -59,7 +59,9 @@ const RootComponent = () => {
         </ul>
       </header>
 
-      <Outlet />
+      <div className="bg-grey-light">
+        <Outlet />
+      </div>
     </>
   );
 };

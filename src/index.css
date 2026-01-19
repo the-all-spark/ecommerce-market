@@ -8,6 +8,13 @@
   src: url('/assets/fonts/roboto.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Adobe-Caslon';
+  font-style: italic;
+  font-display: swap;
+  src: url('/assets/fonts/adobe-caslon.woff2') format('woff2');
+}
+
 @theme {
   /* Colors */
   --color-*: initial;
@@ -19,6 +26,18 @@
   --color-black: #1d1d1d;
   --color-white: #ffffff;
 
+  --color-green: #2ecc71;
+  --color-yellow: #f1c40f;
+  --color-red: #e74c3c;
+
   /* Fonts */
   --font-sans: 'Roboto-regular', sans-serif;
+  --font-heading: 'Adobe-Caslon', sans-serif;
+
+  --text-small: 0.875rem;
+  --text-large: 1.25rem;
+
+  --text-h1: 1.5rem;
+  --text-h2: 1.25rem;
+  --text-h3: 1.125rem;
 }
