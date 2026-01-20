@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getAllProducts, getSingleProduct, getProductsByCategory } from './api';
+import { getAllProducts, getSingleProduct, getAllCategories, getProductsByCategory } from './api';
 
 export const allProductsQueryOptions = queryOptions({
   queryKey: ['products'],
@@ -12,6 +12,11 @@ export const singleProductQueryOptions = (productId: string) =>
     queryKey: ['products', { productId }],
     queryFn: () => getSingleProduct(productId),
   });
+
+export const allCategoriesQueryOptions = queryOptions({
+  queryKey: ['categories'],
+  queryFn: () => getAllCategories(),
+});
 
 export const categoryQueryOptions = (category: string) =>
   queryOptions({

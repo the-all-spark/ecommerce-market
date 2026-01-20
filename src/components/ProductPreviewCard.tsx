@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router';
-import type { AllProducts } from '../types/responseTypes';
+import type { AllProductsResponse } from '../types/responseTypes';
 
 import { getCircleColor } from '../utils/getCircleColor';
 
 interface ProductPreviewCardProps {
-  item: AllProducts;
+  item: AllProductsResponse;
 }
 
 const ProductPreviewCard = ({ item }: ProductPreviewCardProps) => {
@@ -26,7 +26,7 @@ const ProductPreviewCard = ({ item }: ProductPreviewCardProps) => {
         <p>Brand: {item.brand ? item.brand : '-'}</p>
 
         <div className="mt-3 flex flex-row items-center justify-between gap-3">
-          <p className="text-left text-large">{item.price} $</p>
+          <p className={item.price.toString().length >= 8 ? 'text-normal' : 'text-large'}>{item.price} $</p>
           <p className={item.stock === 0 ? 'text-red' : 'text-black'}>
             Available: {item.stock === 0 ? '-' : item.stock}
           </p>

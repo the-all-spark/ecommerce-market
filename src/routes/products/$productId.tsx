@@ -45,8 +45,10 @@ function SingleProductCard() {
                 <p className="mb-2">
                   {product.dimensions.width} cm x {product.dimensions.height} cm x {product.dimensions.depth} cm
                 </p>
-                <div className="border-2 border-grey-dark p-2 text-center text-large">
-                  Price: <b>{product.price} $</b>
+                <div className="border-2 border-grey-dark p-2 text-center">
+                  <p className={product.price.toString().length >= 8 ? 'text-normal' : 'text-large'}>
+                    Price: <b>{product.price} $</b>
+                  </p>
                 </div>
               </div>
             </div>

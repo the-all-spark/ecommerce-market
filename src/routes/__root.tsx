@@ -29,6 +29,11 @@ const links: LinkProps[] = [
     name: 'Products',
     to: '/products',
   },
+  {
+    id: 3,
+    name: 'Categories',
+    to: '/categories',
+  },
 ];
 
 const RootComponent = () => {
@@ -59,7 +64,7 @@ const RootComponent = () => {
         </ul>
       </header>
 
-      <div className="bg-grey-light">
+      <div className="flex min-h-[85vh] flex-col bg-grey-light">
         <Outlet />
       </div>
     </>

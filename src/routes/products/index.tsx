@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { allProductsQueryOptions } from '../../api/customQueryOptions';
-import type { AllProducts } from '../../types/responseTypes';
+import type { AllProductsResponse } from '../../types/responseTypes';
 
 import ProductPreviewCard from '../../components/ProductPreviewCard';
 
@@ -16,7 +16,7 @@ function Products() {
 
   if (status === 'success') {
     console.log(data); //!
-    content = data.products.map((item: AllProducts) => <ProductPreviewCard key={item.id} item={item} />);
+    content = data.products.map((item: AllProductsResponse) => <ProductPreviewCard key={item.id} item={item} />);
   }
 
   return (

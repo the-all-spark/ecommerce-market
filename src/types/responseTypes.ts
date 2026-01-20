@@ -1,10 +1,27 @@
+/* General types */
+
+export interface GeneralApiResponse {
+  limit: number;
+  skip: number;
+  total: number;
+  products: AllProductsResponse[];
+}
+
+/* Response types */
+
+export interface AllCategoriesResponse {
+  name: string;
+  slug: string;
+  url: string;
+}
+
 interface DimensionsType {
   width: number;
   height: number;
   depth: number;
 }
 
-export interface AllProducts {
+export interface AllProductsResponse {
   id: number;
   title: string;
   price: number;
@@ -16,7 +33,7 @@ export interface AllProducts {
   tags: string[];
 }
 
-export interface SingleProduct {
+export interface SingleProductResponse {
   id: number;
   title: string;
   description: string;
@@ -31,10 +48,4 @@ export interface SingleProduct {
   warrantyInformation: string;
   category: string;
   tags: string[];
-}
-
-export interface ProductsByCategory {
-  id: number;
-  title: string;
-  brand: string;
 }
