@@ -7,7 +7,7 @@ import AllPreviewCards from '../../components/AllPreviewCards';
 
 // * List of products' preview cards
 function ProductsList() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(Number(localStorage.getItem('currentPage')) || 0);
   const [itemsPerPage, setItemsPerPage] = useState(Number(localStorage.getItem('itemsPerPage')) || 50);
 
   const { data, status } = useSuspenseQuery(allProductsQueryOptions(currentPage, itemsPerPage));
@@ -17,6 +17,10 @@ function ProductsList() {
 
   const handleChangeItemsPerPage = (amount: number) => {
     setItemsPerPage(amount);
+    setCurrentPage(0);
+  };
+
+  const handleResetCurrentPage = () => {
     setCurrentPage(0);
   };
 
@@ -30,6 +34,7 @@ function ProductsList() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    localStorage.setItem('currentPage', currentPage.toString());
   }, [currentPage]);
 
   useEffect(() => {
@@ -61,9 +66,18 @@ function ProductsList() {
         ))}
       </div>
 
-      <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6">
-        {status === 'success' && <AllPreviewCards products={data.products} />}
+      <div className="flex flex-row items-center justify-center gap-3 pt-4">
+        <button
+          className={`rounded-md border-2 border-grey-middle bg-white p-2 pt-1 pb-1 ${currentPage === 0 ? 'text-grey-dark hover:cursor-not-allowed' : 'text-black hover:cursor-pointer'}`}
+          onClick={handleResetCurrentPage}
+          disabled={currentPage === 0}
+        >
+          Show from Page 1
+        </button>
+        <p className="text-center text-large font-bold text-coral">Page: {currentPage + 1}</p>
       </div>
+
+      {status === 'success' && <AllPreviewCards products={data.products} />}
 
       <div className="mb-8 flex flex-row items-center justify-center gap-4 pt-3 pb-3">
         <button
