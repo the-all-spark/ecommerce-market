@@ -18,11 +18,17 @@ function ProductsList() {
     searchProductsQueryOptions(currentSearchString, currentPage, itemsPerPage)
   );
 
+  console.log(itemsPerPage);
+
   let itemsAmount: number[];
   let totalPages: number;
 
   if (searchData.products.length > 0) {
-    itemsAmount = [10, searchData.total];
+    if (searchData.total <= 10) {
+      itemsAmount = [searchData.total];
+    } else {
+      itemsAmount = [10, searchData.total];
+    }
     totalPages = Math.ceil(searchData?.total / itemsPerPage);
   } else {
     itemsAmount = [10, 20, 50, data.total];
@@ -61,8 +67,8 @@ function ProductsList() {
     localStorage.setItem('itemsPerPage', itemsPerPage.toString());
   }, [itemsPerPage]);
 
-  // console.log(data); //!
-  // console.log(searchData); //!
+  console.log(data); //!
+  console.log(searchData); //!
 
   return (
     <>
@@ -76,9 +82,9 @@ function ProductsList() {
 
         <div className="flex flex-row items-center justify-center gap-1">
           <p>Items per page:</p>
-          {itemsAmount.map((amount) => (
+          {itemsAmount.map((amount, index) => (
             <button
-              key={amount}
+              key={index}
               className={`rounded-md border-2 p-2 pt-1 pb-1 hover:cursor-pointer ${
                 itemsPerPage === amount
                   ? 'border-2 border-transparent bg-grey-dark text-white'
@@ -92,27 +98,33 @@ function ProductsList() {
         </div>
       </div>
 
-      {currentSearchString !== '*' && (
-        <div className="flex flex-row items-center justify-center gap-6 pt-3">
-          <div className="pt-2 pb-1 text-right">
-            <p>
-              You are searching for <b>'{currentSearchString}'</b>.
-            </p>
-            <p>
-              Found: <b>{itemsAmount[itemsAmount.length - 1]}</b> products on <b>{totalPages}</b> page(-s).
-            </p>
-          </div>
+      {currentSearchString !== '*' ? (
+        searchData.products.length > 0 ? (
+          <div className="flex flex-row items-center justify-center gap-6 pt-3">
+            <div className="pt-2 pb-1 text-right">
+              <p>
+                You are searching for <b>'{currentSearchString}'</b>.
+              </p>
+              <p>
+                Found: <b>{itemsAmount[itemsAmount.length - 1]}</b> products on <b>{totalPages}</b> page(-s).
+              </p>
+            </div>
 
-          <button aria-label="Reset" onClick={handleReset} className="hover:cursor-pointer" title="Reset">
-            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                className="fill-grey-dark"
-                d="M12.5 0V2.77777C17.8597 2.77777 22.2222 7.13889 22.2222 12.5C22.2222 17.8611 17.8597 22.2222 12.5 22.2222C7.14027 22.2222 2.77777 17.8611 2.77777 12.5C2.77777 9.93473 3.79861 7.51944 5.55556 5.71944V9.02777H8.33333V1.38889H0.69444V4.16667H3.18194C1.15417 6.43333 0 9.3875 0 12.5C0 19.3917 5.60694 25 12.5 25C19.3931 25 25 19.3917 25 12.5C25 5.60833 19.3931 0 12.5 0Z"
-              />
-            </svg>
-          </button>
-        </div>
-      )}
+            <button aria-label="Reset" onClick={handleReset} className="hover:cursor-pointer" title="Reset">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  className="fill-grey-dark"
+                  d="M12.5 0V2.77777C17.8597 2.77777 22.2222 7.13889 22.2222 12.5C22.2222 17.8611 17.8597 22.2222 12.5 22.2222C7.14027 22.2222 2.77777 17.8611 2.77777 12.5C2.77777 9.93473 3.79861 7.51944 5.55556 5.71944V9.02777H8.33333V1.38889H0.69444V4.16667H3.18194C1.15417 6.43333 0 9.3875 0 12.5C0 19.3917 5.60694 25 12.5 25C19.3931 25 25 19.3917 25 12.5C25 5.60833 19.3931 0 12.5 0Z"
+                />
+              </svg>
+            </button>
+          </div>
+        ) : (
+          <p className="pt-3 pb-1 text-center">
+            <b>No products</b> found according to search criteria.
+          </p>
+        )
+      ) : null}
 
       <div className="flex flex-row items-center justify-center gap-3 pt-4">
         <button
