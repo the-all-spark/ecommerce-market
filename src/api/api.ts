@@ -20,3 +20,13 @@ export const getProductsByCategory = async (category: string): Promise<GeneralAp
   const res = await fetch(`https://dummyjson.com/products/category/${category}`);
   return await res.json();
 };
+
+export const searchProducts = async (
+  searchString: string,
+  currentPage: number,
+  itemsPerPage: number
+): Promise<GeneralApiResponse> => {
+  let skip = currentPage * itemsPerPage;
+  const res = await fetch(`https://dummyjson.com/products/search?q=${searchString}&limit=${itemsPerPage}&skip=${skip}`);
+  return await res.json();
+};
