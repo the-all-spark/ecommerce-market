@@ -1,33 +1,101 @@
+import { Suspense, useEffect, useState } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { allProductsQueryOptions } from '../../api/customQueryOptions';
-import type { AllProductsResponse } from '../../types/responseTypes';
+import AllPreviewCards from '../../components/AllPreviewCards';
 
-import ProductPreviewCard from '../../components/ProductPreviewCard';
+// * List of products' preview cards
+function ProductsList() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(Number(localStorage.getItem('itemsPerPage')) || 50);
 
-// List of products' preview cards
-// TODO: add pagination
+  const { data, status } = useSuspenseQuery(allProductsQueryOptions(currentPage, itemsPerPage));
 
-function Products() {
-  const { data, status } = useSuspenseQuery(allProductsQueryOptions);
+  const itemsAmount = [10, 20, 50, data.total];
+  let totalPages = Math.ceil(data?.total / itemsPerPage);
 
-  let content: React.ReactNode;
+  const handleChangeItemsPerPage = (amount: number) => {
+    setItemsPerPage(amount);
+    setCurrentPage(0);
+  };
 
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  useEffect(() => {
+    localStorage.setItem('itemsPerPage', itemsPerPage.toString());
+  }, [itemsPerPage]);
+
+  // ! delete
   if (status === 'success') {
     console.log(data); //!
-    content = data.products.map((item: AllProductsResponse) => <ProductPreviewCard key={item.id} item={item} />);
   }
 
   return (
     <>
       <h1 className="pt-6 text-center font-heading text-h1/8">Get acquainted with all products!</h1>
-      <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6">{content}</div>
+      <div className="flex flex-row items-center justify-center gap-2 pt-3">
+        <p>Items per page:</p>
+        {itemsAmount.map((amount) => (
+          <button
+            key={amount}
+            className={`rounded-md border-2 p-2 pt-1 pb-1 hover:cursor-pointer ${
+              itemsPerPage === amount
+                ? 'border-2 border-transparent bg-grey-dark text-white'
+                : 'border-2 border-grey-middle bg-white text-black'
+            }`}
+            onClick={() => handleChangeItemsPerPage(amount)}
+          >
+            {amount === data.total ? 'All' : amount}
+          </button>
+        ))}
+      </div>
+
+      <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6">
+        {status === 'success' && <AllPreviewCards products={data.products} />}
+      </div>
+
+      <div className="mb-8 flex flex-row items-center justify-center gap-4 pt-3 pb-3">
+        <button
+          className={`w-35 rounded-md border-2 border-grey-middle bg-white p-2 ${currentPage === 0 ? 'text-grey-dark hover:cursor-not-allowed' : 'text-black hover:cursor-pointer'} `}
+          onClick={handlePreviousPage}
+          disabled={currentPage === 0}
+        >
+          ← Previous
+        </button>
+
+        <p className="text-large font-bold text-coral">Page: {currentPage + 1}</p>
+
+        <button
+          className={`w-35 rounded-md border-2 border-grey-middle bg-white p-2 ${currentPage + 1 >= totalPages ? 'text-grey-dark hover:cursor-not-allowed' : 'text-black hover:cursor-pointer'} `}
+          onClick={handleNextPage}
+          disabled={currentPage + 1 >= totalPages}
+        >
+          Next →
+        </button>
+      </div>
     </>
   );
 }
 
+function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
+      <ProductsList />
+    </Suspense>
+  );
+}
+
 export const Route = createFileRoute('/products/')({
-  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(allProductsQueryOptions),
-  component: Products,
+  component: ProductsPage,
 });

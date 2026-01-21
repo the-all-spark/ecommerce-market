@@ -1,8 +1,8 @@
 import type { GeneralApiResponse, AllCategoriesResponse, SingleProductResponse } from '../types/responseTypes';
 
-export const getAllProducts = async (): Promise<GeneralApiResponse> => {
-  // const res = await fetch(`https://dummyjson.com/products?limit=0`); //! limit=0 - to get all products
-  const res = await fetch(`https://dummyjson.com/products?limit=30`);
+export const getAllProducts = async (currentPage: number, itemsPerPage: number): Promise<GeneralApiResponse> => {
+  let skip = currentPage * itemsPerPage;
+  const res = await fetch(`https://dummyjson.com/products?limit=${itemsPerPage}&skip=${skip}`);
   return await res.json();
 };
 
