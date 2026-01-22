@@ -35,7 +35,11 @@ const SearchForm = ({ setSearchString, setCurrentPage, setItemsPerPage }: Search
 
   return (
     <div className="flex flex-col justify-center gap-1">
-      <form onSubmit={(e) => handleSearchInput(e)} className="flex flex-row items-center gap-2">
+      <form
+        onSubmit={(e) => handleSearchInput(e)}
+        className="flex flex-row items-center gap-2"
+        data-testid="submit-form"
+      >
         <input
           name="searchValue"
           type="text"
@@ -43,7 +47,13 @@ const SearchForm = ({ setSearchString, setCurrentPage, setItemsPerPage }: Search
           placeholder="Search product..."
           className="rounded-md border-2 border-coral bg-white p-2 pt-1 pb-1"
         />
-        <button type="submit" aria-label="Search" className="hover:cursor-pointer" title="Search">
+        <button
+          type="submit"
+          className="hover:cursor-pointer"
+          title="Search"
+          aria-label="Search"
+          data-testid="search-btn"
+        >
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               className="fill-coral"
