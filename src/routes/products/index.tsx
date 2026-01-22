@@ -11,14 +11,12 @@ import SearchForm from '../../components/SearchForm';
 function ProductsList() {
   const [currentPage, setCurrentPage] = useState(Number(localStorage.getItem('currentPage')) || 0);
   const [itemsPerPage, setItemsPerPage] = useState(Number(localStorage.getItem('itemsPerPage')) || 50);
-  const [currentSearchString, setCurrentSearchString] = useState('*');
+  const [currentSearchString, setCurrentSearchString] = useState(localStorage.getItem('currentSearchString') || '*');
 
   const { data } = useSuspenseQuery(allProductsQueryOptions(currentPage, itemsPerPage));
   const { data: searchData } = useSuspenseQuery(
     searchProductsQueryOptions(currentSearchString, currentPage, itemsPerPage)
   );
-
-  console.log(itemsPerPage);
 
   let itemsAmount: number[];
   let totalPages: number;
@@ -67,8 +65,12 @@ function ProductsList() {
     localStorage.setItem('itemsPerPage', itemsPerPage.toString());
   }, [itemsPerPage]);
 
-  console.log(data); //!
-  console.log(searchData); //!
+  useEffect(() => {
+    localStorage.setItem('currentSearchString', currentSearchString.toString());
+  }, [currentSearchString]);
+
+  // console.log(data); //!
+  // console.log(searchData); //!
 
   return (
     <>
