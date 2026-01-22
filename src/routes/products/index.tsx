@@ -75,7 +75,7 @@ function ProductsList() {
   return (
     <>
       <h1 className="pt-6 text-center font-heading text-h1/8">Get acquainted with all products!</h1>
-      <div className="flex flex-row items-center justify-center gap-7 bg-white pt-4 pb-4">
+      <div className="flex flex-row items-center justify-center gap-7 bg-white pt-4 pb-4 max-sm:flex-col max-sm:gap-2 md:m-auto md:w-9/10 md:rounded-md lg:gap-10 xl:gap-12">
         <SearchForm
           setSearchString={setCurrentSearchString}
           setCurrentPage={setCurrentPage}
@@ -145,7 +145,7 @@ function ProductsList() {
         <AllPreviewCards products={data.products} />
       )}
 
-      <div className="mb-8 flex flex-row items-center justify-center gap-4 pt-3 pb-3">
+      <div className="mb-8 flex flex-row items-center justify-center gap-4 pt-3 pb-3 max-sm:flex-col">
         <button
           className={`w-35 rounded-md border-2 border-grey-middle bg-white p-2 ${currentPage === 0 ? 'text-grey-dark hover:cursor-not-allowed' : 'text-black hover:cursor-pointer'} `}
           onClick={handlePreviousPage}

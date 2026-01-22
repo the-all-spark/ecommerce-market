@@ -3,7 +3,7 @@ import ProductPreviewCard from './ProductPreviewCard';
 
 const AllPreviewCards = ({ products }: { products: AllProductsResponse[] }) => {
   return (
-    <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6">
+    <div className="m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6 max-sm:justify-center sm:gap-8 lg:gap-4">
       {products.map((item: AllProductsResponse) => (
         <ProductPreviewCard key={item.id} item={item} />
       ))}

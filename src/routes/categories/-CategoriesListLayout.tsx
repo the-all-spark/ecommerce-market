@@ -26,7 +26,7 @@ function CategoriesListLayout({ children }: CategoriesListLayoutProps) {
 
   if (status === 'success') {
     list = (
-      <ul className="flex flex-row flex-wrap justify-center gap-2 bg-white p-5 pr-6 pl-5">
+      <ul className="flex flex-row flex-wrap justify-center gap-2 bg-white p-5 pr-6 pl-5 lg:mr-auto lg:ml-auto lg:w-9/10 lg:rounded-md">
         {categories.map((category: AllCategoriesResponse) => (
           <li
             className={`rounded-md p-3 pt-1 pb-1 text-normal ${getButtonStyle(category.slug)} hover:cursor-pointer`}

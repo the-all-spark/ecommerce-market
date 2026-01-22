@@ -6,7 +6,6 @@ import ProductsByCategory from '../../components/ProductsByCategory';
 
 function CategoryProductsPage() {
   const { category } = Route.useParams();
-  // console.log(category); //!
 
   return (
     <CategoriesListLayout>

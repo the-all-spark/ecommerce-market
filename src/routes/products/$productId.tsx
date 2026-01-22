@@ -28,8 +28,8 @@ function SingleProductCard() {
               Main information
             </h2>
           </div>
-          <div className="flex flex-row items-center gap-6">
-            <div className="w-7/10">
+          <div className="flex flex-row items-center gap-6 max-sm:flex-col max-sm:items-start">
+            <div className="w-7/10 max-sm:w-full">
               <p className="mb-2">
                 <i>Description</i>: {product.description}
               </p>
@@ -38,7 +38,7 @@ function SingleProductCard() {
               </p>
             </div>
             <div>
-              <div className="text-small">
+              <div className="text-small max-sm:text-normal">
                 <p>
                   <i>Dimensions</i>:
                 </p>

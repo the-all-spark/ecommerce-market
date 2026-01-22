@@ -5,7 +5,7 @@ import { useSuspenseQuery, useQuery } from '@tanstack/react-query';
 import { allProductsQueryOptions, singleProductQueryOptions } from '../api/customQueryOptions';
 import ProductPreviewCard from '../components/ProductPreviewCard';
 
-// Main page
+// * Main page
 const AboutUs = () => {
   const { data: allData, status } = useSuspenseQuery(allProductsQueryOptions(0, 0));
 
@@ -23,8 +23,8 @@ const AboutUs = () => {
 
   return (
     <div className="flex min-h-[85vh] flex-col bg-grey-light">
-      <h1 className="pt-6 text-center font-heading text-h1/8">Welcome to our All-Inclusive Market!</h1>
-      <p className="m-auto w-8/10 pt-6 pb-6 text-center">
+      <h1 className="pt-6 pr-3 pl-3 text-center font-heading text-h1/8">Welcome to our All-Inclusive Market!</h1>
+      <p className="m-auto w-8/10 pt-6 pb-6 text-center lg:w-7/10 xl:w-5/10">
         Explore our <b>vast collection of products</b> and choose those that suit you needs. Our marketplace is
         dedicated to providing you with the best possible shopping experience.
       </p>
