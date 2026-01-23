@@ -7,11 +7,16 @@ export default defineConfig({
   plugins: [
     tanstackRouter({
       target: 'react',
-      autoCodeSplitting: true,
+      autoCodeSplitting: false,
     }),
     react(),
     tailwindcss(),
   ],
+  base: '/ecommerce-market/',
+  build: {
+    emptyOutDir: true,
+    outDir: 'dist',
+  },
   test: {
     globals: true,
     environment: 'jsdom',

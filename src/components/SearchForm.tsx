@@ -46,6 +46,7 @@ const SearchForm = ({ setSearchString, setCurrentPage, setItemsPerPage }: Search
           ref={inputRef}
           placeholder="Search product..."
           className="rounded-md border-2 border-coral bg-white p-2 pt-1 pb-1"
+          aria-label="Input for searching"
         />
         <button
           type="submit"

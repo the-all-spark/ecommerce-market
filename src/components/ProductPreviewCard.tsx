@@ -12,7 +12,7 @@ const ProductPreviewCard = ({ item }: ProductPreviewCardProps) => {
 
   return (
     <div className="h-auto w-[47%] items-center rounded-md bg-white p-5 shadow-md max-sm:w-[90%] lg:w-[32%] 2xl:w-[24%]">
-      <Link to={`/products/${item.id}`}>
+      <Link to="/products/$productId" params={{ productId: item.id.toString() }}>
         <div className="flex flex-row items-center justify-between gap-1">
           <div className="flex flex-row items-center gap-3">
             <div className={`inline-block h-4 w-4 rounded-full ${getCircleColor(item.availabilityStatus)}`}></div>
@@ -21,7 +21,7 @@ const ProductPreviewCard = ({ item }: ProductPreviewCardProps) => {
           <p className="text-right text-small leading-4 text-grey-dark">{categoryString}</p>
         </div>
 
-        <img src={item.thumbnail} alt="Product preview image" className="m-auto mt-3 mb-3" />
+        <img src={item.thumbnail} alt={`Preview image of product #${item.id}`} className="m-auto mt-3 mb-3" />
         <h2 className="text-center font-heading text-h2/6">{item.title}</h2>
         <p>Brand: {item.brand ? item.brand : '-'}</p>
 
