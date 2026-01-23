@@ -1,1 +1,0 @@
-import{j as s}from"./index-Cw_xCsLt.js";import{P as a}from"./ProductPreviewCard-BJ6dfqFO.js";const m=({products:t})=>s.jsx("div",{className:"m-auto flex w-9/10 flex-wrap items-stretch justify-start gap-6 p-2 pt-6 pb-6 max-sm:justify-center sm:gap-8 lg:gap-4",children:t.map(r=>s.jsx(a,{item:r},r.id))});export{m as A};
