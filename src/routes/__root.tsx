@@ -28,7 +28,9 @@ const RootComponent = () => {
 
   return (
     <>
-      <header className="flex h-22 items-center justify-between bg-coral p-4 lg:p-8">
+      <header
+        className={`flex h-22 items-center justify-between ${isAuthenticated ? 'bg-grey-dark' : 'bg-coral'} p-4 lg:p-8`}
+      >
         <div>
           <img src={logo} alt="Market logo" />
         </div>

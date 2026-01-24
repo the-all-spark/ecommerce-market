@@ -36,8 +36,9 @@ function LoginPage() {
         <p className="font-bold text-coral">(Only for admins!)</p>
       </div>
 
-      <form className="flex flex-col gap-3" onSubmit={handleLoginFormSubmit} autoComplete="on">
+      <form className="flex flex-col gap-3" onSubmit={handleLoginFormSubmit}>
         <input
+          autoComplete="on"
           name="username"
           type="text"
           placeholder="Username"
