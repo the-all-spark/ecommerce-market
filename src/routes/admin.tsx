@@ -1,11 +1,55 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
-import { useAuthStore } from '../hooks/useAuthStore';
 import { getAuthState } from '../utils/getAuthState';
 
 function AdminAccount() {
-  const { isAuthenticated } = useAuthStore();
-  return <div>Hello "admin"! Status: {isAuthenticated ? 'true' : 'false'}</div>;
+  const userData = JSON.parse(localStorage.getItem('user') as string);
+
+  return (
+    <div>
+      <h1 className="pt-6 text-center font-heading text-h1/8">Admin panel</h1>
+      <h2 className="pt-6 text-center font-heading text-h2/6">
+        Hello,{' '}
+        <span className="text-coral">
+          <b>{userData.firstName}</b>
+        </span>
+        !
+      </h2>
+
+      <div className="m-auto flex w-8/10 flex-col items-center gap-3 pt-5 pb-5 lg:w-6/10">
+        <p className="mb-2 w-full border-b-2 border-grey-middle pt-2 pb-2 text-center text-normal/5 font-semibold">
+          Your personal data
+        </p>
+        <div className="flex flex-row gap-6 max-sm:flex-col max-sm:items-start lg:gap-9">
+          <div className="text-center">
+            <img src={userData.image} alt="User photo" />
+            <i>ID</i>: {userData.id}
+          </div>
+          <div>
+            <p>
+              <i>Username</i>: <b>{userData.username}</b>
+            </p>
+            <p>
+              <i>Last name</i>: {userData.lastName}
+            </p>
+            <p>
+              <i>First name</i>: {userData.firstName}
+            </p>
+            <p>
+              <i>Email</i>: {userData.email}
+            </p>
+            <p>
+              <i>Gender</i>: {userData.gender}
+            </p>
+          </div>
+        </div>
+
+        <p className="mb-2 w-full border-b-2 border-grey-middle pt-2 pb-2 text-center text-normal/5 font-semibold">
+          Users data
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export const Route = createFileRoute('/admin')({

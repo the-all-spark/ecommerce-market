@@ -29,7 +29,7 @@ function LoginPage() {
   }, [loginMutation.isSuccess]);
 
   return (
-    <div className="mr-auto ml-auto flex w-5/10 flex-col gap-6">
+    <div className="mr-auto ml-auto flex w-5/10 flex-col gap-6 xl:w-3/10">
       <div className="text-center">
         <h1 className="pt-6 pr-3 pl-3 font-heading text-h1/8">Login to admin panel</h1>
         <p className="font-bold text-coral">(Only for admins!)</p>
