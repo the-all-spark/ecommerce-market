@@ -1,6 +1,21 @@
-import { queryOptions } from '@tanstack/react-query';
+import { queryOptions, mutationOptions } from '@tanstack/react-query';
 
-import { getAllProducts, getSingleProduct, getAllCategories, getProductsByCategory, searchProducts } from './api';
+import {
+  getAllProducts,
+  getSingleProduct,
+  getAllCategories,
+  getProductsByCategory,
+  searchProducts,
+  loginUser,
+} from './api';
+
+import type { UserResponse } from '../types/responseTypes';
+import type { QueryClient } from '@tanstack/react-query';
+
+interface UserRequest {
+  username: string;
+  password: string;
+}
 
 export const allProductsQueryOptions = (currentPage: number, itemsPerPage: number) =>
   queryOptions({
@@ -29,4 +44,22 @@ export const searchProductsQueryOptions = (searchString: string, currentPage: nu
   queryOptions({
     queryKey: ['products', 'search', { searchString, currentPage, itemsPerPage }],
     queryFn: () => searchProducts(searchString, currentPage, itemsPerPage),
+  });
+
+export const loginUserMutationOptions = (queryClient: QueryClient) =>
+  mutationOptions({
+    mutationKey: ['auth', 'login'],
+    mutationFn: ({ username, password }: UserRequest) => loginUser(username, password),
+    onSuccess: (data: UserResponse) => {
+      if (data.accessToken) {
+        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('isAuthenticated', 'true');
+        queryClient.setQueryData(['auth', 'isAuthenticated'], true);
+      } else {
+        console.error('Check your credentials!'); //!
+      }
+    },
+    onError: (error) => {
+      console.error('Login failed:', error);
+    },
   });

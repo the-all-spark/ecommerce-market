@@ -1,4 +1,9 @@
-import type { GeneralApiResponse, AllCategoriesResponse, SingleProductResponse } from '../types/responseTypes';
+import type {
+  GeneralApiResponse,
+  AllCategoriesResponse,
+  SingleProductResponse,
+  UserResponse,
+} from '../types/responseTypes';
 
 export const getAllProducts = async (currentPage: number, itemsPerPage: number): Promise<GeneralApiResponse> => {
   let skip = currentPage * itemsPerPage;
@@ -28,5 +33,17 @@ export const searchProducts = async (
 ): Promise<GeneralApiResponse> => {
   let skip = currentPage * itemsPerPage;
   const res = await fetch(`https://dummyjson.com/products/search?q=${searchString}&limit=${itemsPerPage}&skip=${skip}`);
+  return await res.json();
+};
+
+export const loginUser = async (username: string, password: string): Promise<UserResponse> => {
+  const res = await fetch('https://dummyjson.com/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: `${username}`,
+      password: `${password}`,
+    }),
+  });
   return await res.json();
 };
