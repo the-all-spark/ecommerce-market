@@ -1,9 +1,22 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+
+import { useAuthStore } from '../hooks/useAuthStore';
+import { getAuthState } from '../utils/getAuthState';
 
 function AdminAccount() {
-  return <div>Hello "admin"!</div>;
+  const { isAuthenticated } = useAuthStore();
+  return <div>Hello "admin"! Status: {isAuthenticated ? 'true' : 'false'}</div>;
 }
 
 export const Route = createFileRoute('/admin')({
+  beforeLoad: async ({ context: { queryClient } }) => {
+    const isAuthenticated = getAuthState(queryClient);
+
+    if (!isAuthenticated) {
+      throw redirect({
+        to: '/login',
+      });
+    }
+  },
   component: AdminAccount,
 });
