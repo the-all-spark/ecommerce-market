@@ -7,6 +7,13 @@ export interface GeneralApiResponse {
   products: AllProductsResponse[];
 }
 
+export interface GeneralUsersResponse {
+  limit: number;
+  skip: number;
+  total: number;
+  users: AllUsersResponse[];
+}
+
 /* Response types */
 
 export interface AllCategoriesResponse {
@@ -60,4 +67,14 @@ export interface UserResponse {
   image: string;
   accessToken: string;
   refreshToken: string;
+}
+
+export interface AllUsersResponse {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  birthDate: string;
 }

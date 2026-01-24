@@ -3,6 +3,7 @@ import type {
   AllCategoriesResponse,
   SingleProductResponse,
   UserResponse,
+  GeneralUsersResponse,
 } from '../types/responseTypes';
 
 export const getAllProducts = async (currentPage: number, itemsPerPage: number): Promise<GeneralApiResponse> => {
@@ -45,5 +46,10 @@ export const loginUser = async (username: string, password: string): Promise<Use
       password: `${password}`,
     }),
   });
+  return await res.json();
+};
+
+export const getAllUsers = async (): Promise<GeneralUsersResponse> => {
+  const res = await fetch('https://dummyjson.com/users?limit=5&skip=1');
   return await res.json();
 };

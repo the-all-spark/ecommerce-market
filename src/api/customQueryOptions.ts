@@ -7,6 +7,7 @@ import {
   getProductsByCategory,
   searchProducts,
   loginUser,
+  getAllUsers,
 } from './api';
 
 import type { UserResponse } from '../types/responseTypes';
@@ -63,3 +64,8 @@ export const loginUserMutationOptions = (queryClient: QueryClient) =>
       console.error('Login failed:', error);
     },
   });
+
+export const allUsersQueryOptions = queryOptions({
+  queryKey: ['users'],
+  queryFn: () => getAllUsers(),
+});

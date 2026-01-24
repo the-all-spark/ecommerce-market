@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate, redirect } from '@tanstack/react-router';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 import { loginUserMutationOptions } from '../api/customQueryOptions';
+import { getAuthState } from '../utils/getAuthState';
 
 function LoginPage() {
   const queryClient = useQueryClient();
@@ -71,5 +72,13 @@ function LoginPage() {
 }
 
 export const Route = createFileRoute('/login')({
+  beforeLoad: async ({ context: { queryClient } }) => {
+    const isAuthenticated = getAuthState(queryClient);
+    if (isAuthenticated) {
+      throw redirect({
+        to: '/admin',
+      });
+    }
+  },
   component: LoginPage,
 });
