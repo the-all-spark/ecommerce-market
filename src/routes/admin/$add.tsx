@@ -17,7 +17,7 @@ function AddUserPage() {
     lastName: '',
     gender: '',
   });
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const addUserMutation = useMutation(addUserMutationOptions());
 

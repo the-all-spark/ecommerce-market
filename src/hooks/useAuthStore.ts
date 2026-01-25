@@ -1,7 +1,12 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-export const useAuthStore = () => {
+interface AuthStore {
+  isAuthenticated: boolean;
+  logout: () => void;
+}
+
+export const useAuthStore = (): AuthStore => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 

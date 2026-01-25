@@ -14,8 +14,6 @@ function SingleProductCard() {
   if (status === 'success') {
     let categoryString = product.category[0].toUpperCase() + product.category.slice(1);
 
-    console.log(product); //!
-
     content = (
       <div className="m-auto flex w-9/10 flex-col justify-start gap-6 p-2 pt-6 pb-6">
         <p className="text-right text-small leading-4 text-grey-dark">{categoryString}</p>

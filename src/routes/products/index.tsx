@@ -9,9 +9,11 @@ import SearchForm from '../../components/SearchForm';
 
 // * List of products' preview cards
 function ProductsList() {
-  const [currentPage, setCurrentPage] = useState(Number(localStorage.getItem('currentPage')) || 0);
-  const [itemsPerPage, setItemsPerPage] = useState(Number(localStorage.getItem('itemsPerPage')) || 50);
-  const [currentSearchString, setCurrentSearchString] = useState(localStorage.getItem('currentSearchString') || '*');
+  const [currentPage, setCurrentPage] = useState<number>(Number(localStorage.getItem('currentPage')) || 0);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(Number(localStorage.getItem('itemsPerPage')) || 50);
+  const [currentSearchString, setCurrentSearchString] = useState<string>(
+    localStorage.getItem('currentSearchString') || '*'
+  );
 
   const { data } = useSuspenseQuery(allProductsQueryOptions(currentPage, itemsPerPage));
   const { data: searchData } = useSuspenseQuery(
@@ -69,9 +71,6 @@ function ProductsList() {
     localStorage.setItem('currentSearchString', currentSearchString.toString());
   }, [currentSearchString]);
 
-  // console.log(data); //!
-  // console.log(searchData); //!
-
   return (
     <>
       <h1 className="pt-6 text-center font-heading text-h1/8">Get acquainted with all products!</h1>
@@ -112,7 +111,7 @@ function ProductsList() {
               </p>
             </div>
 
-            <button aria-label="Reset" onClick={handleReset} className="hover:cursor-pointer" title="Reset">
+            <button className="hover:cursor-pointer" title="Reset" aria-label="Reset" onClick={handleReset}>
               <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   className="fill-grey-dark"

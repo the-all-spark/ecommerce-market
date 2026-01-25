@@ -12,13 +12,7 @@ import {
   addUser,
 } from './api';
 
-// import type { UserResponse, UserAddResponse, UserAddRequest } from '../types/responseTypes';
-import type { UserResponse, UserAddRequest } from '../types/responseTypes';
-
-interface UserRequest {
-  username: string;
-  password: string;
-}
+import type { UserRequest, UserResponse, UserAddRequest } from '../types/responseTypes';
 
 export const allProductsQueryOptions = (currentPage: number, itemsPerPage: number) =>
   queryOptions({
@@ -59,7 +53,7 @@ export const loginUserMutationOptions = (queryClient: QueryClient) =>
         localStorage.setItem('isAuthenticated', 'true');
         queryClient.setQueryData(['auth', 'isAuthenticated'], true);
       } else {
-        console.error('Check your credentials!'); //!
+        console.error('Check your credentials!');
       }
     },
     onError: (error) => {

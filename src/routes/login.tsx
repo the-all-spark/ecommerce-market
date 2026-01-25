@@ -17,9 +17,6 @@ function LoginPage() {
     let username = formData.get('username') as string;
     let password = formData.get('password') as string;
 
-    console.log(username); //!!
-    console.log(password); //!!
-
     loginMutation.mutate({ username, password });
   };
 

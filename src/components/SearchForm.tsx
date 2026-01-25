@@ -8,15 +8,13 @@ interface SearchFormProps {
 
 const SearchForm = ({ setSearchString, setCurrentPage, setItemsPerPage }: SearchFormProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const handleSearchInput = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const searchInput = inputRef.current?.value || '';
     const searchString = searchInput.replace(/\s/g, '');
-
-    console.log(searchString); //!
 
     if (searchString.length > 0) {
       setSearchString(searchString);

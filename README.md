@@ -69,6 +69,7 @@ Used localStorage to store admin data, "isAuthenticated" flag, "itemsPerPage" se
 ## Others
 
 - Created a responsive layout using Tailwind CSS (from 320px to 1536px);
+- Write unit/module tests for the app;
 
 # Dependencies
 
