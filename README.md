@@ -44,6 +44,10 @@ Implemented the following pages and their functionality:
      - changes header' background color to dark grey;
      - admin can't access to login page unless they are logged out (login page will redirect to admin panel);
 6. **Admin panel** (_protected route_ - only for authenticated admin) - the page where admin can see their personal data and users' data (data is received from the API).
+7. **Add new user** (_protected route_ - only for authenticated admin) - the page where admin can add new user to the database.
+   - displays the form for adding new user;
+   - includes error message if the data is incorrect;
+   - if the adding was successful the user card with added user data is displayed. All form fields are reset.
 
 ## Working with API
 
@@ -57,6 +61,7 @@ Fetched data from the [DummyJSON API](https://dummyjson.com/docs) using TanStack
 - get products by category (for "Categories" page);
 - login admin;
 - get all users (for "Admin panel" page);
+- add new user (for "Add new user" page);
 
 Used cached data.  
 Used localStorage to store admin data, "isAuthenticated" flag, "itemsPerPage" settings and other options to use them in the app.

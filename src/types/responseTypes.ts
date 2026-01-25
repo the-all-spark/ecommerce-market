@@ -73,6 +73,27 @@ export interface AllUsersResponse {
   id: number;
   username: string;
   email: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  birthDate: string;
+}
+
+export interface UserAddRequest {
+  username: string;
+  email: string;
+  phone?: string;
+  firstName: string;
+  lastName: string;
+  gender?: string;
+}
+
+export interface UserAddResponse {
+  id: number;
+  username: string;
+  email: string;
+  phone: string;
   firstName: string;
   lastName: string;
   gender: string;

@@ -1,15 +1,15 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
+import { createFileRoute, redirect, Link } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { getAuthState } from '../utils/getAuthState';
-import { allUsersQueryOptions } from '../api/customQueryOptions';
-import UserCard from '../components/UserCard';
+import { getAuthState } from '../../utils/getAuthState';
+import { allUsersQueryOptions } from '../../api/customQueryOptions';
+
+import UserCard from '../../components/UserCard';
 
 function AdminAccount() {
   const userData = JSON.parse(localStorage.getItem('user') as string);
 
   const { data: users, status } = useSuspenseQuery(allUsersQueryOptions);
-  // console.log(users); //!
 
   return (
     <div>
@@ -50,9 +50,14 @@ function AdminAccount() {
           </div>
         </div>
 
-        <p className="mb-2 w-full border-b-2 border-grey-middle pt-2 pb-2 text-center text-normal/5 font-semibold">
-          Users data
-        </p>
+        <div className="mb-2 flex w-full flex-row items-center border-b-2 border-grey-middle pt-2 pb-2">
+          <p className="text-center text-normal/5 font-semibold">Users data</p>
+          <button className="ml-auto rounded-md border-2 border-coral p-1 pr-2 pl-2 text-coral hover:cursor-pointer">
+            <Link to="/admin/$add" params={{ add: 'add' }}>
+              Add new user
+            </Link>
+          </button>
+        </div>
 
         {status === 'success' && (
           <div className="flex flex-row flex-wrap justify-start gap-3">
@@ -66,7 +71,7 @@ function AdminAccount() {
   );
 }
 
-export const Route = createFileRoute('/admin')({
+export const Route = createFileRoute('/admin/')({
   beforeLoad: async ({ context: { queryClient } }) => {
     const isAuthenticated = getAuthState(queryClient);
     if (!isAuthenticated) {

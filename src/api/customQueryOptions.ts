@@ -1,4 +1,5 @@
 import { queryOptions, mutationOptions } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
 
 import {
   getAllProducts,
@@ -8,10 +9,11 @@ import {
   searchProducts,
   loginUser,
   getAllUsers,
+  addUser,
 } from './api';
 
-import type { UserResponse } from '../types/responseTypes';
-import type { QueryClient } from '@tanstack/react-query';
+// import type { UserResponse, UserAddResponse, UserAddRequest } from '../types/responseTypes';
+import type { UserResponse, UserAddRequest } from '../types/responseTypes';
 
 interface UserRequest {
   username: string;
@@ -69,3 +71,12 @@ export const allUsersQueryOptions = queryOptions({
   queryKey: ['users'],
   queryFn: () => getAllUsers(),
 });
+
+export const addUserMutationOptions = () =>
+  mutationOptions({
+    mutationKey: ['newUser', 'add'],
+    mutationFn: (newUserData: UserAddRequest) => addUser(newUserData),
+    onError: (error) => {
+      console.error('User adding failed:', error);
+    },
+  });

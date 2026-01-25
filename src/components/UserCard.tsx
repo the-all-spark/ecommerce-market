@@ -1,10 +1,10 @@
-import type { AllUsersResponse } from '../types/responseTypes';
+import type { AllUsersResponse, UserAddResponse } from '../types/responseTypes';
 
-interface ProductPreviewCardProps {
-  user: AllUsersResponse;
+interface UserCardProps {
+  user: AllUsersResponse | UserAddResponse;
 }
 
-const UserCard = ({ user }: ProductPreviewCardProps) => {
+const UserCard = ({ user }: UserCardProps) => {
   return (
     <div className="border border-grey-dark p-3">
       <p>
@@ -22,12 +22,22 @@ const UserCard = ({ user }: ProductPreviewCardProps) => {
       <p>
         <i>Last name</i>: {user.lastName}
       </p>
-      <p>
-        <i>Gender</i>: {user.gender}
-      </p>
-      <p>
-        <i>Birth date</i>: {user.birthDate}
-      </p>
+
+      {user.gender ? (
+        <p>
+          <i>Gender</i>: {user.gender}
+        </p>
+      ) : null}
+      {user.phone ? (
+        <p>
+          <i>Phone</i>: {user.phone}
+        </p>
+      ) : null}
+      {user.birthDate ? (
+        <p>
+          <i>Birth date</i>: {user.birthDate}
+        </p>
+      ) : null}
     </div>
   );
 };
