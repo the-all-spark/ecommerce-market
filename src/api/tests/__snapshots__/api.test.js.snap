@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`API response to get user data > matches query cache structure 1`] = `
+{
+  "birthDate": "xxxx-x-xx",
+  "email": "test@test.com",
+  "firstName": "Test",
+  "gender": "test",
+  "id": 500,
+  "lastName": "User",
+  "phone": "+xx xxx-xx-xx",
+  "username": "test",
+}
+`;
+
+exports[`API response to get user data > matches user with id=2 data structure 1`] = `
+{
+  "birthDate": "1989-8-10",
+  "email": "michael.williams@x.dummyjson.com",
+  "firstName": "Michael",
+  "gender": "male",
+  "id": 2,
+  "lastName": "Williams",
+  "phone": "+49 258-627-6644",
+  "username": "michaelw",
+}
+`;
