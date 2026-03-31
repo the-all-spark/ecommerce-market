@@ -5,6 +5,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { loginUserMutationOptions } from '../api/customQueryOptions';
 import { getAuthState } from '../utils/getAuthState';
 
+// * Login page
 function LoginPage() {
   const queryClient = useQueryClient();
   const loginMutation = useMutation(loginUserMutationOptions(queryClient));

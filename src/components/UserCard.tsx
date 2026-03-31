@@ -23,21 +23,21 @@ const UserCard = ({ user }: UserCardProps) => {
         <i>Last name</i>: {user.lastName}
       </p>
 
-      {user.gender ? (
+      {user.gender && (
         <p>
           <i>Gender</i>: {user.gender}
         </p>
-      ) : null}
-      {user.phone ? (
+      )}
+      {user.phone && (
         <p>
           <i>Phone</i>: {user.phone}
         </p>
-      ) : null}
-      {user.birthDate ? (
+      )}
+      {user.birthDate && (
         <p>
           <i>Birth date</i>: {user.birthDate}
         </p>
-      ) : null}
+      )}
     </div>
   );
 };

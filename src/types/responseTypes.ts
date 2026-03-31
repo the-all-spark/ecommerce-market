@@ -1,20 +1,16 @@
-/* General types */
-
-export interface GeneralApiResponse {
+export interface GeneralResponse {
   limit: number;
   skip: number;
   total: number;
+}
+
+export interface GeneralProductsResponse extends GeneralResponse {
   products: AllProductsResponse[];
 }
 
-export interface GeneralUsersResponse {
-  limit: number;
-  skip: number;
-  total: number;
+export interface GeneralUsersResponse extends GeneralResponse {
   users: AllUsersResponse[];
 }
-
-/* Response types */
 
 export interface AllCategoriesResponse {
   name: string;
@@ -40,21 +36,12 @@ export interface AllProductsResponse {
   tags: string[];
 }
 
-export interface SingleProductResponse {
-  id: number;
-  title: string;
+export interface SingleProductResponse extends AllProductsResponse {
   description: string;
   dimensions: DimensionsType;
-  thumbnail: string;
   images: string[];
-  price: number;
-  brand: string;
-  availabilityStatus: string;
-  stock: number;
   shippingInformation: string;
   warrantyInformation: string;
-  category: string;
-  tags: string[];
 }
 
 export interface UserRequest {

@@ -9,7 +9,7 @@ import { getAuthState } from '../../utils/getAuthState';
 import UserCard from '../../components/UserCard';
 
 function AddUserPage() {
-  const [newUserData, setNewUserDataData] = useState<UserAddRequest>({
+  const [newUserData, setNewUserData] = useState<UserAddRequest>({
     username: '',
     email: '',
     phone: '',
@@ -37,7 +37,7 @@ function AddUserPage() {
 
       addUserMutation.mutate(newUserData);
 
-      setNewUserDataData({
+      setNewUserData({
         username: '',
         email: '',
         phone: '',
@@ -69,7 +69,7 @@ function AddUserPage() {
             required
             aria-label="Username"
             value={newUserData.username}
-            onChange={(e) => setNewUserDataData({ ...newUserData, username: e.target.value })}
+            onChange={(e) => setNewUserData({ ...newUserData, username: e.target.value })}
           />
           <br />
           <p className="mb-3 text-small text-grey-dark">Should be more than 5 symbols</p>
@@ -87,7 +87,7 @@ function AddUserPage() {
             required
             aria-label="Email"
             value={newUserData.email}
-            onChange={(e) => setNewUserDataData({ ...newUserData, email: e.target.value })}
+            onChange={(e) => setNewUserData({ ...newUserData, email: e.target.value })}
           />
           <br />
           <p className="mb-3 text-small text-grey-dark">Format: example@gmail.com</p>
@@ -102,7 +102,7 @@ function AddUserPage() {
                 className="mr-2"
                 checked={newUserData.gender === 'male'}
                 value="male"
-                onChange={(e) => setNewUserDataData({ ...newUserData, gender: e.target.value })}
+                onChange={(e) => setNewUserData({ ...newUserData, gender: e.target.value })}
               />
               <label htmlFor="male">Male</label>
             </div>
@@ -114,7 +114,7 @@ function AddUserPage() {
                 className="mr-2"
                 checked={newUserData.gender === 'female'}
                 value="female"
-                onChange={(e) => setNewUserDataData({ ...newUserData, gender: e.target.value })}
+                onChange={(e) => setNewUserData({ ...newUserData, gender: e.target.value })}
               />
               <label htmlFor="female">Female</label>
             </div>
@@ -136,7 +136,7 @@ function AddUserPage() {
             required
             aria-label="First name"
             value={newUserData.firstName}
-            onChange={(e) => setNewUserDataData({ ...newUserData, firstName: e.target.value })}
+            onChange={(e) => setNewUserData({ ...newUserData, firstName: e.target.value })}
           />
           <br />
           <p className="mb-3 text-small text-grey-dark">Should be more than 1 symbol</p>
@@ -154,7 +154,7 @@ function AddUserPage() {
             required
             aria-label="Last name"
             value={newUserData.lastName}
-            onChange={(e) => setNewUserDataData({ ...newUserData, lastName: e.target.value })}
+            onChange={(e) => setNewUserData({ ...newUserData, lastName: e.target.value })}
           />
           <br />
           <p className="mb-3 text-small text-grey-dark">Should be more than 2 symbols</p>
@@ -170,7 +170,7 @@ function AddUserPage() {
             required
             aria-label="Phone"
             value={newUserData.phone}
-            onChange={(e) => setNewUserDataData({ ...newUserData, phone: e.target.value })}
+            onChange={(e) => setNewUserData({ ...newUserData, phone: e.target.value })}
           />
           <br />
           <p className="mb-3 text-small text-grey-dark">Format: +xxx(xx) xxx-xx-xx</p>

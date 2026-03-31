@@ -1,14 +1,14 @@
 import type {
-  GeneralApiResponse,
-  AllCategoriesResponse,
+  GeneralProductsResponse,
   SingleProductResponse,
+  AllCategoriesResponse,
   UserResponse,
   GeneralUsersResponse,
   UserAddResponse,
   UserAddRequest,
 } from '../types/responseTypes';
 
-export const getAllProducts = async (currentPage: number, itemsPerPage: number): Promise<GeneralApiResponse> => {
+export const getAllProducts = async (currentPage: number, itemsPerPage: number): Promise<GeneralProductsResponse> => {
   let skip = currentPage * itemsPerPage;
   const res = await fetch(`https://dummyjson.com/products?limit=${itemsPerPage}&skip=${skip}`);
   return await res.json();
@@ -24,7 +24,7 @@ export const getAllCategories = async (): Promise<AllCategoriesResponse[]> => {
   return await res.json();
 };
 
-export const getProductsByCategory = async (category: string): Promise<GeneralApiResponse> => {
+export const getProductsByCategory = async (category: string): Promise<GeneralProductsResponse> => {
   const res = await fetch(`https://dummyjson.com/products/category/${category}`);
   return await res.json();
 };
@@ -33,7 +33,7 @@ export const searchProducts = async (
   searchString: string,
   currentPage: number,
   itemsPerPage: number
-): Promise<GeneralApiResponse> => {
+): Promise<GeneralProductsResponse> => {
   let skip = currentPage * itemsPerPage;
   const res = await fetch(`https://dummyjson.com/products/search?q=${searchString}&limit=${itemsPerPage}&skip=${skip}`);
   return await res.json();
