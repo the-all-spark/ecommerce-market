@@ -7,6 +7,9 @@
 
 Application is available at the [address](https://the-all-spark.github.io/ecommerce-market/).
 
+<img src="./public/assets/images/Screenshot_1.jpg" alt='Screenshot of Products page' width="300"/>
+<img src="./public/assets/images/Screenshot_2.jpg" alt='Screenshot of Categories page' width="300"/>
+
 # Functionality
 
 ## Pages
